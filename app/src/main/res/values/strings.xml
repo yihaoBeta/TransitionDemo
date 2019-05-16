@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AnimDemo</string>
+    <string name="app_name_zhCN">Android动画Demo</string>
+</resources>
