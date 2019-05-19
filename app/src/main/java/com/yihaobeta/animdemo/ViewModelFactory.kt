@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 
 object ViewModelFactory {
     fun buildFlowersViewModel():FlowersVMFactory{
-        return FlowersVMFactory(Repository.getInstance())
+        return FlowersVMFactory()
     }
 }
 
-class FlowersVMFactory(private val repository: Repository):ViewModelProvider.NewInstanceFactory(){
+class FlowersVMFactory :ViewModelProvider.NewInstanceFactory(){
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return FlowerViewModel(repository) as T
+        return FlowerViewModel.getInstance() as T
     }
 }
