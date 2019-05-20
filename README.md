@@ -1,2 +1,2 @@
 # TransitionDemo
-使用android transition动画框架的一个小demo
+使用android transition动画框架的一个小demo，用来演示transition动画制作的转场效果
