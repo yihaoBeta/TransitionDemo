@@ -1,28 +1,26 @@
-package com.yihaobeta.animdemo
+package com.yihaobeta.animdemo.views.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.yihaobeta.animdemo.FlowerBean
+import com.yihaobeta.animdemo.R
 
 class FlowerListAdapter(private val dataList: MutableList<FlowerBean>) :
     RecyclerView.Adapter<FlowerListAdapter.FlowerViewHolder>() {
     private var onItemClickListener: ItemClickListener? = null
 
-    fun setOnItemClickListener(listener: ItemClickListener){
+    fun setOnItemClickListener(listener: ItemClickListener) {
         this.onItemClickListener = listener
     }
+
     fun setData(data: List<FlowerBean>) {
         dataList.addAll(data)
         notifyDataSetChanged()
-    }
-
-    fun getFlowerByPosition(position: Int):FlowerBean{
-        return dataList[position]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowerViewHolder {

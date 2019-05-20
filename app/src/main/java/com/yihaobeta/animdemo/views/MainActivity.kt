@@ -1,4 +1,4 @@
-package com.yihaobeta.animdemo
+package com.yihaobeta.animdemo.views
 
 import android.content.Intent
 import android.graphics.PointF
@@ -11,46 +11,84 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.transition.*
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_welcome.*
+import com.yihaobeta.animdemo.FlowerSeasonBean
+import com.yihaobeta.animdemo.R
+import com.yihaobeta.animdemo.viewmodel.FlowerViewModel
+import com.yihaobeta.animdemo.viewmodel.ViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
 
-class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    private lateinit var viewModel: FlowerViewModel
+    private val seasonMap = mutableMapOf<String, FlowerSeasonBean>()
     private var selectedSeasonImageView: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
-        supportActionBar?.title = "开花季节"
+        setContentView(R.layout.activity_main)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory.buildFlowersViewModel()
+        ).get(FlowerViewModel::class.java)
+        supportActionBar?.title = "花期"
         initViews()
+        observerData(viewModel)
+    }
+
+    private fun observerData(viewModel: FlowerViewModel) {
+        viewModel.flowers().observe(this, Observer {
+            it.season.forEach { season ->
+                seasonMap[season.name] = season
+            }
+        })
     }
 
     private fun initViews() {
+        //设置按键监听
         arrayOf(springFrame, summerFrame, autumnFrame, winterFrame).forEach {
-            for (i in 0..it.childCount) {
-                if (it.getChildAt(i) is ImageView) {
-                    Glide.with(this).load(R.mipmap.cover)
-                        .into(it.getChildAt(i) as ImageView)
-                    break
-                }
-            }
-
             it.setOnClickListener(this)
         }
         goButton.setOnClickListener {
-            val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create(selectedSeasonImageView, "shared_image"))
+            viewModel.setSeason(seasonMap[curSeasonName]!!)
+
+            //实现shared效果的转场动画
+            val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                Pair.create(selectedSeasonImageView, "shared_image")
+            )
                 .toBundle()
-            startActivity(Intent(this, MainActivity::class.java),bundle)
+            startActivity(Intent(this, FloweringSeasonActivity::class.java), bundle)
         }
     }
 
+    private var curSeasonName: String = ""
     override fun onClick(v: View) {
+
+        //获取当前点击的季节信息
         when (v.id) {
-            R.id.springFrame -> selectedSeasonImageView = springIv
-            R.id.summerFrame -> selectedSeasonImageView = summerIv
-            R.id.autumnFrame -> selectedSeasonImageView = autumnIv
-            R.id.winterFrame -> selectedSeasonImageView = winterIv
+            R.id.springFrame -> {
+                selectedSeasonImageView = springIv
+                curSeasonName = "spring"
+            }
+            R.id.summerFrame -> {
+                selectedSeasonImageView = summerIv
+                curSeasonName = "summer"
+            }
+            R.id.autumnFrame -> {
+                selectedSeasonImageView = autumnIv
+                curSeasonName = "autumn"
+            }
+            R.id.winterFrame -> {
+                selectedSeasonImageView = winterIv
+                curSeasonName = "winter"
+            }
         }
+
+        descriptionTv.text = seasonMap[curSeasonName]?.description
+
+        //开始动画效果
         TransitionManager.beginDelayedTransition(
             imageContainer,
             TransitionInflater.from(this).inflateTransition(R.transition.set)
@@ -61,6 +99,10 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private var isSelected = false
+
+    /**
+     * 构建底部介绍信息及Button的动画效果
+     */
     private fun makeTransition(modeIn: Boolean): TransitionSet {
         val slide = Slide()
         slide.mode = if (modeIn) Slide.MODE_IN else Slide.MODE_OUT
@@ -69,7 +111,9 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         return TransitionSet().addTransition(slide).addTransition(Fade())
     }
 
+    //改变场景，以便Transition生效
     private fun changeScene(v: View) {
+        //缩放效果
         v.scaleX = if (v.scaleX > 1) 1f else 2f
         v.scaleY = if (v.scaleY > 1) 1f else 2f
         changePosition(v)
@@ -79,6 +123,9 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private var isTrans = false
     private val originPos = PointF()
+    /**
+     * 改变位置，移动到中心
+     */
     private fun changePosition(v: View) {
         isTrans = !isTrans
         if (isTrans) {
@@ -93,6 +140,9 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    /**
+     * 改变可见状态
+     */
     private fun changeVisibility(vararg views: View) {
         views.forEach {
             it.visibility = if (it.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE

@@ -13,15 +13,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"/>
+        <activity android:name=".views.DetailActivity"/>
         <activity
-                android:name=".MainActivity"
+                android:name=".views.FloweringSeasonActivity"
                 android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
