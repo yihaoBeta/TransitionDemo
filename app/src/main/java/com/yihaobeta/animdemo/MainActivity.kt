@@ -4,12 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.yihaobeta.animdemo.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,18 +28,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //window.enterTransition = android.transition.Slide()
-            //android.transition.TransitionInflater.from(this).inflateTransition(R.transition.enter_transition)
 
         val root = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         setSupportActionBar(toolbar)
         recyclerView.adapter = adapter
+
+        playLayoutAnimation(recyclerView,AnimationUtils.loadAnimation(this,R.anim.layout_item_anim),false)
+
         adapter.setOnItemClickListener(object : FlowerListAdapter.ItemClickListener {
             override fun onClick(view: View) {
                 val position = recyclerView.getChildAdapterPosition(view)
-                Log.d("TAG", "click:$position,name:${adapter.getFlowerByPosition(position).name}")
                 viewModel?.setCurDetail(position)
-                startActivity(Intent(this@MainActivity,WelcomeActivity::class.java))
+                val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity,
+                    Pair.create(view.findViewById(R.id.item_image),"shared_cover"),
+                    Pair.create(view.findViewById(R.id.item_name),"shared_title")
+                ).toBundle()
+                startActivity(Intent(this@MainActivity,DetailActivity::class.java),bundle)
             }
         })
         viewModel = ViewModelProvider(this, ViewModelFactory.buildFlowersViewModel()).get(FlowerViewModel::class.java)
@@ -41,6 +52,25 @@ class MainActivity : AppCompatActivity() {
             root.flowers = it
             supportActionBar?.title = it.title
             adapter.setData(it.flowers)
+            recyclerView.scheduleLayoutAnimation()
         })
+    }
+
+
+    /**
+     * 播放RecyclerView动画
+     *
+     * @param animation
+     * @param isReverse
+     */
+    private fun playLayoutAnimation(target:RecyclerView,animation: Animation, isReverse: Boolean) {
+        val controller = LayoutAnimationController(animation)
+        controller.delay = 0.2f
+        controller.order =
+            if (isReverse) LayoutAnimationController.ORDER_REVERSE else LayoutAnimationController.ORDER_NORMAL
+
+        target.layoutAnimation = controller
+        target.adapter?.notifyDataSetChanged()
+        target.scheduleLayoutAnimation()
     }
 }

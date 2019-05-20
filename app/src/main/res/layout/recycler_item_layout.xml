@@ -20,6 +20,7 @@
             android:background="@android:color/transparent">
 
         <ImageView
+                android:transitionName="shared_cover"
                 android:layout_gravity="center_vertical"
                 app:layout_constraintDimensionRatio="w,4:3"
                 android:layout_width="0dp"
@@ -35,6 +36,7 @@
                 android:layout_marginStart="8dp"/>
 
         <TextView
+                android:transitionName="shared_title"
                 android:text="玫瑰花"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

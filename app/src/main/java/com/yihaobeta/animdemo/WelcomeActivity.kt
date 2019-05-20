@@ -40,7 +40,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         goButton.setOnClickListener {
             val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair.create(selectedSeasonImageView, "shared_image"))
                 .toBundle()
-            startActivity(Intent(this, MainActivity::class.java), bundle)
+            startActivity(Intent(this, MainActivity::class.java),bundle)
         }
     }
 

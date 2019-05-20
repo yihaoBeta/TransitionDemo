@@ -137,8 +137,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/contentContainer"
-            android:visibility="invisible">
+            android:visibility="invisible"
+            android:id="@+id/contentContainer">
 
         <TextView
                 android:text="TextView"
@@ -153,7 +153,9 @@
                 android:layout_marginTop="8dp"/>
 
         <Button
-                android:text="Button"
+                android:text="进入列表查看"
+                android:padding="8dp"
+                android:background="@drawable/button_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/goButton"

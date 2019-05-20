@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.yihaobeta.animdemo">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.yihaobeta.animdemo">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
             android:name=".App"
@@ -11,16 +13,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity"
-        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".DetailActivity"/>
-        <activity android:name=".WelcomeActivity"/>
+        <activity
+                android:name=".MainActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

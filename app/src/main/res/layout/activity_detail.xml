@@ -15,6 +15,7 @@
             android:layout_height="match_parent">
 
         <ImageView
+                android:transitionName="shared_cover"
                 android:src="@mipmap/cover"
                 android:scaleType="centerCrop"
                 android:layout_width="0dp"
@@ -28,6 +29,7 @@
                 android:layout_marginStart="8dp"/>
 
         <TextView
+                android:transitionName="shared_title"
                 android:text="@{flower.name}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
