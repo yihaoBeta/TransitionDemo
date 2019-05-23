@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun makeTransition(modeIn: Boolean): TransitionSet {
         val slide = Slide()
         slide.mode = if (modeIn) Slide.MODE_IN else Slide.MODE_OUT
-        slide.slideEdge = if (modeIn) Gravity.LEFT else Gravity.RIGHT
+        slide.slideEdge = if (modeIn) Gravity.START else Gravity.END
         slide.interpolator = if (modeIn) DecelerateInterpolator() else AccelerateInterpolator()
         return TransitionSet().addTransition(slide).addTransition(Fade())
     }

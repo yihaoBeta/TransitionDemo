@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">AnimDemo</string>
-    <string name="app_name_zhCN">Android动画Demo</string>
+    <string name="autumn">秋</string>
+    <string name="spring">春</string>
+    <string name="summer">夏</string>
+    <string name="go_to_list">进入列表查看</string>
+    <string name="winter">冬</string>
+    <string name="season_spring">花期：春季</string>
+    <string name="season_summer">花期：夏季</string>
+    <string name="season_autumn">花期：秋季</string>
+    <string name="season_winter">花期：冬季</string>
 </resources>

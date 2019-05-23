@@ -32,7 +32,6 @@ class FloweringSeasonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flowering_season)
-
         DataBindingUtil.setContentView<ActivityFloweringSeasonBinding>(
             this,
             R.layout.activity_flowering_season
@@ -76,19 +75,19 @@ class FloweringSeasonActivity : AppCompatActivity() {
             when (it.name) {
                 "spring" -> {
                     coverIv.setImageDrawable(getDrawable(R.mipmap.spring))
-                    supportActionBar?.title = "花期：春季"
+                    supportActionBar?.title = getString(R.string.season_spring)
                 }
                 "summer" -> {
                     coverIv.setImageDrawable(getDrawable(R.mipmap.summer))
-                    supportActionBar?.title = "花期：夏季"
+                    supportActionBar?.title = getString(R.string.season_summer)
                 }
                 "autumn" -> {
                     coverIv.setImageDrawable(getDrawable(R.mipmap.autumn))
-                    supportActionBar?.title = "花期：秋季"
+                    supportActionBar?.title = getString(R.string.season_autumn)
                 }
                 "winter" -> {
                     coverIv.setImageDrawable(getDrawable(R.mipmap.winter))
-                    supportActionBar?.title = "花期：冬季"
+                    supportActionBar?.title = getString(R.string.season_winter)
                 }
             }
             adapter.setData(it.flowers)
@@ -114,10 +113,8 @@ class FloweringSeasonActivity : AppCompatActivity() {
         target.scheduleLayoutAnimation()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home) {
-            finishAfterTransition()
-        }
-        return super.onOptionsItemSelected(item)
+    override fun onSupportNavigateUp(): Boolean {
+        finishAfterTransition()
+        return super.onSupportNavigateUp()
     }
 }

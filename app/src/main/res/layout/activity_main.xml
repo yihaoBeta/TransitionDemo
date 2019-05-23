@@ -10,7 +10,7 @@
             android:id="@+id/imageContainer"
             app:layout_constraintDimensionRatio="w,1:1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/match_constraint"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,23 +30,18 @@
             <ImageView
                     android:id="@+id/autumnIv"
                     android:src="@mipmap/autumn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-
+                    style="@style/season_image_style"
                     android:transitionName="shared_image"/>
 
             <TextView
+                    style="@style/season_textview_style"
                     android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:text="秋"
-                    android:textSize="36sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/autumn"/>
         </FrameLayout>
 
         <FrameLayout
                 android:clickable="true"
+                android:focusable="true"
                 android:id="@+id/springFrame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,20 +52,16 @@
                 app:layout_constraintBottom_toTopOf="@+id/autumnFrame">
 
             <ImageView
+                    style="@style/season_image_style"
                     android:id="@+id/springIv"
                     android:src="@mipmap/spring"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
                     android:transitionName="shared_image"/>
 
             <TextView
+                    style="@style/season_textview_style"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_gravity="center"
-                    android:text="春"
-                    android:textSize="36sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/spring"/>
         </FrameLayout>
 
         <FrameLayout
@@ -84,20 +75,15 @@
                 app:layout_constraintBottom_toTopOf="@+id/winterFrame">
 
             <ImageView
-                    android:scaleType="centerCrop"
+                    style="@style/season_image_style"
                     android:id="@+id/summerIv"
                     android:src="@mipmap/summer"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
                     android:transitionName="shared_image"/>
 
             <TextView
+                    style="@style/season_textview_style"
                     android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:text="夏"
-                    android:textSize="36sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/summer"/>
         </FrameLayout>
 
         <FrameLayout
@@ -109,32 +95,27 @@
                 app:layout_constraintStart_toEndOf="@+id/autumnFrame"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="#00BB3B3B">
+                android:background="@color/main_season_layout_bg">
 
             <ImageView
-                    android:scaleType="centerCrop"
+                    style="@style/season_image_style"
                     android:id="@+id/winterIv"
                     android:src="@mipmap/winter"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
                     android:transitionName="shared_image"/>
 
             <TextView
+                    style="@style/season_textview_style"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_gravity="center"
-                    android:text="冬"
-                    android:textSize="36sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:text="@string/winter"/>
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"
             app:layout_constraintTop_toBottomOf="@+id/imageContainer"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,34 +123,33 @@
             android:id="@+id/contentContainer">
 
         <TextView
-                android:text="TextView"
-                android:textSize="23sp"
+                android:textSize="@dimen/main_desc_textsize"
                 android:textStyle="bold"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/match_constraint"
+                android:layout_height="@dimen/main_desc_text_height"
                 android:id="@+id/descriptionTv"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"/>
 
         <Button
-                android:text="进入列表查看"
-                android:padding="8dp"
+                android:text="@string/go_to_list"
+                android:padding="@dimen/default_margin"
                 android:background="@drawable/button_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/goButton"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/default_margin"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTv"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/default_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="@dimen/default_margin"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

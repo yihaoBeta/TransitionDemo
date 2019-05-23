@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+    <dimen name="status_bar_height">20dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="detail_tv_title_margin">32dp</dimen>
+    <dimen name="tv_title_textsize">36sp</dimen>
+    <dimen name="detail_tv_classify_textsize">18sp</dimen>
+    <dimen name="detail_tv_classify_margin">24dp</dimen>
+    <dimen name="detail_cover_height">180dp</dimen>
+    <dimen name="main_image_width">100dp</dimen>
+    <dimen name="main_image_height">100dp</dimen>
+    <dimen name="main_desc_text_height">100dp</dimen>
+    <dimen name="main_desc_textsize">23sp</dimen>
+    <dimen name="item_height">150dp</dimen>
+    <dimen name="item_cover_height">140dp</dimen>
+    <dimen name="item_title_textsize">18sp</dimen>
+    <dimen name="item_title_margin_start">16dp</dimen>
+    <dimen name="item_desc_margin_top">16dp</dimen>
 </resources>

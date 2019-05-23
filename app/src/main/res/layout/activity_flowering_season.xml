@@ -18,14 +18,12 @@
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/app_bar_height"
-                android:fitsSystemWindows="true"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="wrap_content"
                     app:contentScrim="?attr/colorPrimary"
                     android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
@@ -40,6 +38,7 @@
                 <androidx.appcompat.widget.Toolbar
                         app:titleTextColor="@color/colorPrimaryDark"
                         android:id="@+id/toolbar"
+                        android:fitsSystemWindows="false"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"
@@ -63,7 +62,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
-                        android:background="#CECACA"
+                        android:background="@color/bg_recyclerview"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">

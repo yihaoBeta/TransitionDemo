@@ -40,11 +40,8 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (android.R.id.home == item?.itemId) {
-            finishAfterTransition()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+    override fun onSupportNavigateUp(): Boolean {
+        finishAfterTransition()
+        return super.onSupportNavigateUp()
     }
 }
